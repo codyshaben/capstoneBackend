@@ -6,12 +6,10 @@ const { Model } = require('objection')
 const users = require('./controllers/users')
 const projects = require('./controllers/projects')
 const app = express();
-
 const environment = process.env.NODE_ENV || 'development'
 const knexConfig = require('./knexfile')
 const environmentConfig = knexConfig[environment]
 const Knex = require('knex')
-
 const knex = Knex(environmentConfig)
 
 Model.knex(knex)
