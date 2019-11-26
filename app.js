@@ -9,7 +9,7 @@ const users = require('./controllers/users')
 const projects = require('./controllers/projects')
 const app = express();
 
-const knex = Knex(knexConfig.development)
+const knex = Knex(knexConfig.production)
 
 Model.knex(knex)
 
