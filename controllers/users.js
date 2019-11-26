@@ -6,7 +6,7 @@ const { Project } = require('../models/project')
 const router = express.Router()
 
 router.get('/', async (req, res) => {
-    const users = await User.query()
+    const users = await User.query().eager('projects')
     res.json(users)
   });
 
@@ -21,6 +21,16 @@ router.post('/', async (req, res) => {
 
   const user = await User.query().insert(newUser)
   res.send(user)
+})
+
+router.post('/login', async (req, res) => {
+  const user = await User.query()
+
+  jwt.sign({user}, 'secretkey', (error, token) => {
+    res.json({
+      token
+    })
+  })
 })
 
 router.post('/:id/projects', async (req, res) => {

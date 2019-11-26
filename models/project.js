@@ -10,18 +10,19 @@ class Project extends Model {
     static get tableName() {
         return 'projects'
     }
-    // static get relationMappings() {
-    //     return {
-    //         user: {
-    //             relation: Model.BelongsToOneRelation,
-    //             modelClass: User,
-    //             join: {
-    //                 from: 'projects.users_id',
-    //                 to: 'users.id'
-    //             }
-    //         }
-    //     }
-    // }
+    static get relationMappings() {
+        const { User } = require('./user')
+        return {
+            user: {
+                relation: Model.BelongsToOneRelation,
+                modelClass: User,
+                join: {
+                    from: 'projects.users_id',
+                    to: 'users.id'
+                }
+            }
+        }
+    }
 }
 
 module.exports = { Project }
