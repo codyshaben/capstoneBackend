@@ -8,4 +8,8 @@ module.exports = {
     client: 'pg',
     connection: 'postgres://localhost/capstone_backend'
   },
+  production: {
+    client: 'pg',
+    connection: process.env.DATABASE_URL
+  }
 };
