@@ -5,6 +5,8 @@ const { Project } = require('../models/project')
 
 const router = express.Router()
 
+require('dotenv').config()
+
 router.get('/', async (req, res) => {
     const users = await User.query().eager('projects')
     res.json(users)
