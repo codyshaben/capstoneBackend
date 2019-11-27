@@ -3,7 +3,6 @@ const express = require('express')
 const { User } = require('../models/user')
 const { Project } = require('../models/project')
 
-
 const router = express.Router()
 
 require('dotenv').config()
