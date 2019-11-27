@@ -6,5 +6,5 @@ module.exports = {
     },
     getUserById: () => {
         return knex('users').select().where('id', id)
-    }
+    },
 }

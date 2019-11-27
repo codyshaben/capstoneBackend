@@ -19,9 +19,9 @@ app.use('/users', users)
 app.use('/users/:id', users)
 app.use('/projects', projects)
 
-const PORT = process.env.PORT || 6000
-app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`)
-})
+// const PORT = process.env.PORT || 6000
+// app.listen(PORT, () => {
+//   console.log(`Listening on port ${PORT}`)
+// })
 
 module.exports = app;
