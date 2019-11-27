@@ -1,5 +1,5 @@
 const express = require('express')
-const queries = require('../db/queries')
+// const queries = require('../db/queries')
 const { User } = require('../models/user')
 const { Project } = require('../models/project')
 
