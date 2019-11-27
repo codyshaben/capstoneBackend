@@ -8,15 +8,11 @@ const projects = require('./controllers/projects')
 const bodyParser = require('body-parser');
 const app = express();
 
-const Knex = require('knex')
-const objection = require('objection')
-const Model = objection.Model
+const knex = require('knex')
 const environment = process.env.NODE_ENV || 'development';
 const config = require('./knexfile.js')
 const environmentConfig = config[environment]
-const connection = Knex(environmentConfig)
-
-Model.knex(connection)
+const connection = knex(environmentConfig)
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
