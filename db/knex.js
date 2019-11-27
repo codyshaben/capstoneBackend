@@ -8,4 +8,4 @@ const connection = knex(config)
 
 Model.knex(connection)
 
-module.exports = require('knex')(config);
+module.exports = Model.knex(connection)
