@@ -9,9 +9,11 @@ const router = express.Router()
 require('dotenv').config()
 
 router.get('/', async (req, res) => {
-    queries.getUsers().then(users => {
-      res.json(users)
-    })
+  const user = await User.query().eager('projects')
+    // queries.getUsers().then(users => {
+    //   res.json(users)
+    // })
+    res.json(user)
   });
 
 router.get('/:id', async (req, res) => {
