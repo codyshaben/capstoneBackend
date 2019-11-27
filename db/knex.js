@@ -6,6 +6,6 @@ const { Model } = objection.Model
 const knex = require('knex')
 const connection = knex(config)
 
-Model.knex(connection)
+Model(connection)
 
-module.exports = Model.knex(connection)
+module.exports = Model(connection)
