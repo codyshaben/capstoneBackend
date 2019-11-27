@@ -1,25 +1,20 @@
 const express = require('express');
 const cors = require('cors')
+const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const { Model } = require('objection')
 const users = require('./controllers/users')
 const projects = require('./controllers/projects')
+const bodyParser = require('body-parser');
 const app = express();
-const environment = process.env.NODE_ENV || 'development'
-const knexConfig = require('./knexfile')
-const environmentConfig = knexConfig[environment]
-const Knex = require('knex')
-const knex = Knex(environmentConfig)
-
-Model.knex(knex)
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors())
+
 app.use('/users', users)
 app.use('/users/:id', users)
 app.use('/projects', projects)

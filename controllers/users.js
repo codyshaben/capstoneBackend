@@ -1,4 +1,5 @@
 const express = require('express')
+const queries = require('../db/queries')
 const { User } = require('../models/user')
 const { Project } = require('../models/project')
 
@@ -8,8 +9,9 @@ const router = express.Router()
 require('dotenv').config()
 
 router.get('/', async (req, res) => {
-    const users = await User.query().eager('projects')
-    res.json(users)
+    queries.getUsers().then(users => {
+      res.json(users)
+    })
   });
 
 router.get('/:id', async (req, res) => {
