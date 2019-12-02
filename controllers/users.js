@@ -1,19 +1,16 @@
 const express = require('express')
 // const queries = require('../db/queries')
 const { User } = require('../models/user')
-const { Project } = require('../models/project')
-
-
+const { Project } = require('../models/resort')
 const router = express.Router()
 
 require('dotenv').config()
 
 router.get('/', async (req, res) => {
-  const user = await User.query().eager('projects')
+  const user = await User.query()
     // queries.getUsers().then(users => {
-    //   res.json(users)
-    // })
-    res.json(user)
+      res.json(user)
+  
   });
 
 router.get('/:id', async (req, res) => {

@@ -4,7 +4,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const users = require('./controllers/users')
-const projects = require('./controllers/projects')
+const resorts = require('./controllers/resorts')
+const trails = require('./controllers/trails')
 const bodyParser = require('body-parser');
 const app = express();
 
@@ -27,11 +28,12 @@ app.use(cors())
 
 app.use('/users', users)
 app.use('/users/:id', users)
-app.use('/projects', projects)
+app.use('/resorts', resorts)
+app.use('/trails', trails)
 
-// const PORT = process.env.PORT || 6000
-// app.listen(PORT, () => {
-//   console.log(`Listening on port ${PORT}`)
-// })
+const PORT = process.env.PORT || 6000
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`)
+})
 
 module.exports = app, connection

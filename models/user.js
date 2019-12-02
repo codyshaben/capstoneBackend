@@ -13,15 +13,18 @@ class User extends Model {
         return 'users'
     }
     static get relationMappings() {
-        const { Project } = require('./project')
-
+        const { Resort } = require('./resort')
         return {
-            projects: {
-                relation: Model.HasManyRelation,
-                modelClass: Project,
+            resorts: {
+                relation: Model.ManyToManyRelation,
+                modelClass: Resort,
                 join: {
                     from: 'users.id',
-                    to: 'projects.users_id'
+                    through: {
+                        from: 'users_resorts.resort_id',
+                        to: 'users_resorts.user_id'
+                    },
+                    to: 'resorts.id'
                 }
             }
         }
