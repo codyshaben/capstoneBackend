@@ -8,9 +8,7 @@ require('dotenv').config()
 
 router.get('/', async (req, res) => {
   const user = await User.query()
-    // queries.getUsers().then(users => {
       res.json(user)
-  
   });
 
 router.get('/:id', async (req, res) => {

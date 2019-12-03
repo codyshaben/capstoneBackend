@@ -1,13 +1,13 @@
-const Knex = require('knex')
-const connection = require('../knexfile')
+// const Knex = require('knex')
+// const connection = require('../knexfile')
 const { Model } = require('objection')
-const environment = process.env.NODE_ENV || 'development'
-const environmentConfig = connection[environment]
-const knexConnection = Knex(environmentConfig)
+// const environment = process.env.NODE_ENV || 'development'
+// const environmentConfig = connection[environment]
+// const knexConnection = Knex(environmentConfig)
 
 
 
-Model.knex(knexConnection)
+// Model.knex(knexConnection)
 
 class Resort extends Model {
     
