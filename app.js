@@ -31,9 +31,9 @@ app.use('/users/:id', users)
 app.use('/resorts', resorts)
 app.use('/trails', trails)
 
-const PORT = process.env.PORT || 6000
-app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`)
-})
+// const PORT = process.env.PORT || 6000
+// app.listen(PORT, () => {
+//   console.log(`Listening on port ${PORT}`)
+// })
 
 module.exports = app, connection
