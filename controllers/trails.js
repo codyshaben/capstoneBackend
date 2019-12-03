@@ -15,11 +15,11 @@ const router = express.Router()
 
 
 
-router.get('/', async (req, res) => {
-    // console.log(allTrails.resortID)
-    // const trails = await Trail.query()
-    res.json(allTrails)
-  })
+// router.get('/', async (req, res) => {
+//     // console.log(allTrails.resortID)
+//     // const trails = await Trail.query()
+//     res.json(allTrails)
+//   })
 
 
 
