@@ -1,6 +1,8 @@
 const express = require('express')
 const { Resort } = require('../models/resort')
 const router = express.Router()
+
+require('dotenv').config()
 // const request = require('request')
 
 // const allResorts = []
