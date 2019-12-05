@@ -1,15 +1,10 @@
-var knex = require('./knex');
+var knex = require('./knex')
 
 module.exports = {
-  findUserById: function(profileId) {
-    return knex('users')
-      .select()
-      .where({ googleId: profileId })
-      .first();
+  getUsers: function() {
+    return knex('users').select()
   },
-
-  createUser: function(profileId) {
-    return knex('users')
-      .insert({ googleId: profileId });
+  getUserById: function(id) {
+    return knex('users').select().where('id', id)
   }
-};
+}
