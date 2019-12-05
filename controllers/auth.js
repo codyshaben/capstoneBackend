@@ -57,7 +57,7 @@ router.post('/signup', function(req, res, next) {
 
         delete payLoad.password
         let newPayLoad = Object.assign({}, payLoad)
-        let token = jwt.sign(newPayLoad, process.env.SECRET_KEY)
+        let token = jwt.sign(newPayLoad, process.env.TOKEN_SECRET)
 
         res.json({token})
       })
