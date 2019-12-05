@@ -28,6 +28,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors())
 
+app.use('/users', users)
 app.use('/users/:id', users)
 app.use('/resorts', resorts)
 app.use('/auth', auth)
