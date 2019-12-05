@@ -1,57 +1,40 @@
 const express = require('express')
 // const queries = require('../db/queries')
-const { User } = require('../models/user')
-const { Project } = require('../models/resort')
 const router = express.Router()
+const auth = require('../auth')
 
 require('dotenv').config()
 
-router.get('/', async (req, res) => {
-  const user = await User.query()
-      res.json(user)
+router.get('/', function(request, response) {
+  response.render('index', { user: request.user });
+});
+
+router.get('/login', function(request, response) {
+  response.render('login', { user: request.user });
+});
+
+router.get('/auth/google',
+  auth.passport.authenticate('google', { scope: ['openid email profile'] }));
+
+router.get('/auth/google/callback',
+  auth.passport.authenticate('google', {
+    failureRedirect: '/login'
+  }),
+  function(request, response) {
+    // Authenticated successfully
+    response.redirect('/');
   });
 
-router.get('/:id', async (req, res) => {
-  const user = await User.query().findById(req.params.id).eager('projects')
+router.get('/logout', function(request, response) {
+  request.logout();
+  response.redirect('/');
+});
 
-  res.json(user)
-} )
+function ensureAuthenticated(request, response, next) {
+  if (request.isAuthenticated()) {
+    return next();
+  }
+  response.redirect('/login');
+}
 
-router.post('/', async (req, res) => {
-  const newUser = req.body
-
-  const user = await User.query().insert(newUser)
-  res.send(user)
-})
-
-router.post('/login', async (req, res) => {
-  const user = await User.query()
-
-  jwt.sign({user}, 'secretkey', (error, token) => {
-    res.json({
-      token
-    })
-  })
-})
-
-router.post('/:id/projects', async (req, res) => {
-  const user = await User.query().findById(req.params.id)
-
-  await user.$relatedQuery('projects').insert(req.body)
-  res.send(user)
-})
-
-router.delete('/:id', async (req, res) => {
-  await User.query().deleteById(req.params.id)
-
-  res.redirect('/users')
-})
-
-router.delete('/:id/projects/:projectId', async (req, res) => {
-  await Project.query().deleteById(req.params.projectId)
-
-  res.redirect(`/users/${req.params.id}`)
-})
-
-
-module.exports = router
+module.exports = router;

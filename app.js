@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express');
 const cors = require('cors')
 const path = require('path');
@@ -7,6 +8,8 @@ const users = require('./controllers/users')
 const resorts = require('./controllers/resorts')
 const bodyParser = require('body-parser');
 const app = express();
+const auth = require('./auth')
+const session = require('express-session')
 
 const Knex = require('knex')
 const objection = require('objection')
@@ -22,6 +25,15 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+    secret: process.env.SESSION_KEY,
+    resave: false,
+    saveUninitialized: false
+  }));
+
+app.use(auth.passport.initialize());
+app.use(auth.passport.session());
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors())
 

@@ -1,22 +1,15 @@
-// const knex = require('./knex')
+var knex = require('./knex');
 
-// module.exports = {
-//     getUsers(){
-//         return knex('users')
-//     },
-//     // getOneUser(id){
-//     //     return knex('users').where('id', id).first()
-//     // },
-//     // getAllTrails(){
-//     //     return knex('trails')
-//     // },
-//     // createUsertrails(usertrail) {
-//     //     return knex('user_trails').insert(usertrail, '*')
-//     // },
-//     // getAllUsertrails(){
-//     //     return knex('user_trails')
-//     // },
-//     createResort(resort){
-//         return knex('resorts').insert(resort, '*')
-//     },    
-// }
+module.exports = {
+  findUserById: function(profileId) {
+    return knex('users')
+      .select()
+      .where({ googleId: profileId })
+      .first();
+  },
+
+  createUser: function(profileId) {
+    return knex('users')
+      .insert({ googleId: profileId });
+  }
+};
